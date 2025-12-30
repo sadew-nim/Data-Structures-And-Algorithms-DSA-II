@@ -1,0 +1,53 @@
+public class DoublyLinkedList {
+
+    class Node {
+        int data;
+        Node prev, next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    Node head;
+
+    public void insert(int x) {
+        Node newNode = new Node(x);
+        newNode.next = head;
+        newNode.prev = null;
+
+        if (head != null) {
+            head.prev = newNode;
+        }
+        head = newNode;
+    }
+
+    public void delete() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        head = head.next;
+        if (head != null) {
+            head.prev = null;
+        }
+    }
+
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " <-> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.display();
+        list.delete();
+        list.display();
+    }
+}
